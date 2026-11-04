@@ -9,7 +9,10 @@ ff
 
 The install script ([read it first](install.sh)) downloads the binary for your system from this repository's
 latest release, checks its SHA-256 against the release's `SHA256SUMS` (and the Sigstore signature of that list when
-`cosign` is installed), and puts it at `~/.local/bin/ff`. It needs no sudo and runs nothing else.
+`cosign` is installed), and puts it at `~/.ff/bin/ff`. It needs no sudo and runs nothing else.
+
+Everything `ff` keeps — sign-ins, where you were, chat history — lives in `~/.ff` (set `FF_HOME` to move it).
+Uninstalling is `rm -rf ~/.ff`.
 
 - `ff` opens the client; the first start signs you in to FireFlow and Flame Chorus in your browser.
 - `ff update` replaces the binary with the latest release, checked the same way.

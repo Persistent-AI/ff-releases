@@ -3,12 +3,13 @@
 #   curl -fsSL https://raw.githubusercontent.com/Persistent-AI/ff-releases/main/install.sh | sh
 # What it does, all of it: picks the binary for this OS and CPU from the latest release of
 # github.com/Persistent-AI/ff-releases, checks its SHA-256 against that release's SHA256SUMS (and its Sigstore
-# signature when `cosign` is installed), and puts it at ~/.local/bin/ff. No sudo, nothing else is downloaded or run.
-# FF_VERSION=v0.1.0 picks a version; FF_INSTALL_DIR changes the folder.
+# signature when `cosign` is installed), and puts it at ~/.ff/bin/ff. No sudo, nothing else is downloaded or run.
+# Everything ff keeps lives in ~/.ff (or $FF_HOME); uninstalling is `rm -rf ~/.ff`.
+# FF_VERSION=v0.1.0 picks a version; FF_HOME changes the folder (the binary goes to $FF_HOME/bin).
 set -eu
 
 repo="Persistent-AI/ff-releases"
-dir="${FF_INSTALL_DIR:-$HOME/.local/bin}"
+dir="${FF_INSTALL_DIR:-${FF_HOME:-$HOME/.ff}/bin}"
 version="${FF_VERSION:-latest}"
 
 case "$(uname -s)" in Darwin) os=darwin ;; Linux) os=linux ;; *) echo "ff: no build for $(uname -s)" >&2; exit 1 ;; esac
